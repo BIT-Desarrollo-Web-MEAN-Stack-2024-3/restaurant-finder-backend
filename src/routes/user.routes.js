@@ -1,8 +1,11 @@
 const express = require( 'express' );
 
 const { getUsers, createUser, getUserById, deleteUserById, updateUserById } = require('../controllers/user.controller');
+
 const validateId = require('../middlewares/validate-id.middleware');
-const { validateUserExistsByUserName, validateUserDoesNotExistsById } = require('../middlewares/validate-user-exists.middleware');
+const { validateDocumentById, validateUserExist } = require('../middlewares/validate-document.middleware');
+const { userExistsById } = require('../helpers/validate-document');
+
 
 const router = express.Router();
 
@@ -13,7 +16,7 @@ router.get( '/', getUsers );
 // http://localhost:<port>/api/users/
 router.post( 
     '/', 
-    validateUserExistsByUserName, 
+    ( req, res, next ) => validateUserExist( req, res, next, false ), 
     createUser 
 );
 
@@ -21,21 +24,21 @@ router.post(
 // req.params.pedro = 7654ftgyhuji
 router.get( 
     '/:id', 
-    [ validateId, validateUserDoesNotExistsById ], 
+    [ validateId, validateDocumentById( userExistsById ) ], 
     getUserById 
 );
 
 // http://localhost:<port>/api/users/<category-id>
 router.delete( 
     '/:id', 
-    [ validateId, validateUserDoesNotExistsById ], 
+    [ validateId, validateDocumentById( userExistsById ) ], 
     deleteUserById 
 );
 
 // http://localhost:<port>/api/users/<category-id>
 router.patch( 
     '/:id', 
-    [ validateId, validateUserDoesNotExistsById ], 
+    [ validateId, validateDocumentById( userExistsById ) ], 
     updateUserById 
 );
 
