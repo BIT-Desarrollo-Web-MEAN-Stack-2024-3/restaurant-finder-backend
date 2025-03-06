@@ -2,6 +2,7 @@ const express = require( 'express' );
 const dbConection = require('./config/mongo.config.js');
 // const conexionDB = require('./config/mongo.config.js');
 const app = express();
+const cors = require( 'cors' );
 
 
 // Ejecuta la configuracion de Mongoose para Mongo
@@ -10,6 +11,7 @@ dbConection();
 
 /** Middleware: Capacidad a Express de aceptar y comprender JSON */
 app.use( express.json() );
+app.use( cors() );
 
 /** Middleware: Endpoints del sitio */
 // http://localhost:<port>/api/products

@@ -22,7 +22,11 @@ const UserSchema = new mongoose.Schema({
         type: String,
         enum: [ 'registered', 'moderator', 'admin' ],
         default: 'registered'
-    }
+    },
+    state: {
+        type: Boolean,
+        default: true
+    },
 },{
     timestamps: true,
     versionKey: false
