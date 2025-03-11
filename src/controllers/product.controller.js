@@ -25,6 +25,9 @@ async function getProducts( req, res ) {
 
 async function createProduct( req, res ) {
     const inputData = req.body;
+    const userId = req.authUser.id;
+
+    inputData.userId = userId;
 
     try {
         const data = await dbInsertProduct( inputData );

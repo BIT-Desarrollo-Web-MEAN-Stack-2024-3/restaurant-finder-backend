@@ -11,6 +11,11 @@ const CategorySchema = new mongoose.Schema({
     description: {
         type: String,
         trim: true
+    },
+    userId: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'users',
+        required: [ true, 'El ID del usuario es obligatorio' ]
     }
 },{
     timestamps: true,

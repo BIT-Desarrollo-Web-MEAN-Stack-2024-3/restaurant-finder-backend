@@ -4,6 +4,8 @@ const { dbInsertCategory, dbGetCategories, dbGetCategoryById, dbDeleteCategoryBy
 
 async function createCategory( req, res ) {
     const inputData = req.body;
+    
+    inputData.userId = req.authUser.id;
 
     try {
         const data = await dbInsertCategory( inputData );

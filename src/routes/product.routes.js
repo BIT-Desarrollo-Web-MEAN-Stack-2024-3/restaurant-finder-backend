@@ -1,5 +1,6 @@
 const express = require( 'express' );
 const { getProducts, createProduct, getProductById, deleteProductById, updateProductByIdPut, updateProductByIdPatch } = require('../controllers/product.controller');
+const { validateAuthUser } = require('../middlewares/validate-auth-user.middleware');
 
 const router = express.Router();
 
@@ -7,7 +8,7 @@ const router = express.Router();
 router.get( '/', getProducts );
 
 // http://localhost:<port>/api/products/
-router.post( '/', createProduct );
+router.post( '/', validateAuthUser, createProduct );
 
 // http://localhost:<port>/api/products/<product-id>
 // req.params.pedro = 7654ftgyhuji
