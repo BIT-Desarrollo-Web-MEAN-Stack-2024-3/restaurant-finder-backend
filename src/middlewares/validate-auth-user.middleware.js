@@ -17,6 +17,8 @@ function validateAuthUser ( req, res, next ) {
     // Paso 2: Verificar la autenticidad del Token
     const payload = verifyToken( token );
 
+    console.log( payload );
+
     if( ! payload ) {
         return res.json({
             ok: false,

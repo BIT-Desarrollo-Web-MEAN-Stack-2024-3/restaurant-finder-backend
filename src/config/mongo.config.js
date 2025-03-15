@@ -4,7 +4,7 @@ const mongoose = require( 'mongoose' );
 async function dbConection() {
     // try-catch: Se usa para manejar excepciones
     try {
-        await mongoose.connect( 'mongodb://localhost:27017/db-r-finder', {} );      // Conectamos a la base de datos y retorna promesa
+        await mongoose.connect( process.env.DB_URI, {} );      // Conectamos a la base de datos y retorna promesa
         console.log( 'Base de datos inicializada correctamente' );
     } 
     catch ( error ) {
@@ -18,7 +18,7 @@ async function dbConection() {
 
 /** Configuracion desde la pagina oficial de MongooseJS usando then-catch */
 function conexionDB () {
-    mongoose.connect( 'mongodb://localhost:27017/db-r-finder', {})
+    mongoose.connect( process.env.DB_URI, {})
         .then( function( data ) {
             console.log( 'Base de datos conectada exitosamente' );
         } )

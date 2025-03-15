@@ -4,6 +4,8 @@ const dbConection = require('./config/mongo.config.js');
 const app = express();
 const cors = require( 'cors' );
 
+const PORT = process.env.PORT ?? 3001; 
+
 
 // Ejecuta la configuracion de Mongoose para Mongo
 dbConection();      
@@ -25,6 +27,6 @@ app.use( '/api/auth', require( './routes/auth.routes.js' ) );
 
 
 /** Lanzar servidor: http://localhost:<port> */
-app.listen( 3000, function() {
-    console.log( 'Servidor escuchando en el puerto 3000' );
+app.listen( PORT, function() {
+    console.log( `Servidor lanzado en http://localhost:${ PORT }` );
 });
